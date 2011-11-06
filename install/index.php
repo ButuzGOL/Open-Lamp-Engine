@@ -160,7 +160,7 @@
 			  PRIMARY KEY  (`id`),
 			  UNIQUE KEY `name` (`name`),
 			  UNIQUE KEY `email` (`email`)
-			) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 
 			$q = "INSERT INTO ".$db_pref."users VALUES ('1', '$name', '$email', '".md5(md5($pass))."', '".time()."', '1', '".time()."', '0', '1', '', '', '', '', '', '', '', '', '')";
@@ -177,7 +177,7 @@
 			  `news_msort` smallint(2) NOT NULL default '0',
 			  `news_num` smallint(2) NOT NULL default '0',
 			  PRIMARY KEY  (`id`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 			
 			$q = "DROP TABLE IF EXISTS ".$db_pref."vote";
@@ -193,7 +193,7 @@
 			  `cats` varchar(255) NOT NULL default '',
 			  `body` text NOT NULL,
 			  PRIMARY KEY  (`id`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 			
 			$q = "DROP TABLE IF EXISTS ".$db_pref."votes";
@@ -206,7 +206,7 @@
 			  `answer` varchar(100) NOT NULL default '',
 			  `news_id` mediumint(8) NOT NULL default '0',
 			  PRIMARY KEY (`id`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 
 			$q = "DROP TABLE IF EXISTS ".$db_pref."news";
@@ -234,7 +234,7 @@
 			  `descr` varchar(200) NOT NULL default '',
 			  `user_id` mediumint(8) NOT NULL default '0',
 			  PRIMARY KEY  (`id`)
-			) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 
 			$q = "DROP TABLE IF EXISTS ".$db_pref."statik";
@@ -253,7 +253,7 @@
 			  `onoff` tinyint(1) NOT NULL default '0',
 			  `user_id` mediumint(8) NOT NULL default '0',
 			  PRIMARY KEY  (`id`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 
 			$q = "DROP TABLE IF EXISTS ".$db_pref."bannedip";
@@ -266,7 +266,7 @@
 			  `descr` text NOT NULL,
 			  PRIMARY KEY  (`id`),
 			  UNIQUE KEY `ip` (`ip`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 			
 			$q = "DROP TABLE IF EXISTS ".$db_pref."bookmarks";
@@ -277,7 +277,7 @@
 			  `user_id` mediumint(8) NOT NULL default '0',
 			  `news_id` mediumint(8) NOT NULL default '0',
 			  PRIMARY KEY  (`id`)
-			) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 
 			$q = "DROP TABLE IF EXISTS ".$db_pref."comments";
@@ -294,7 +294,7 @@
 			  `text` text NOT NULL,
 			  `ip` varchar(16) NOT NULL default '',
 			  PRIMARY KEY  (`id`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 
 			$q = "DROP TABLE IF EXISTS ".$db_pref."pm";
@@ -313,7 +313,7 @@
 			  `autor` varchar(40) NOT NULL default '',
 			  `autor_to` varchar(40) NOT NULL default '',
 			  PRIMARY KEY  (`id`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 
 			$q = "DROP TABLE IF EXISTS ".$db_pref."note";
@@ -321,7 +321,7 @@
 			
 			$q = "CREATE TABLE ".$db_pref."note (
 			  `text` text
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q);
 
 			$q = "insert into ".$db_pref."note values('Здесь вы можете сохранять собственные заметки.')";
@@ -335,7 +335,7 @@
 			  `word0` varchar(100) not null default '',
 			  `word1` varchar(100) not null default '',
 			  PRIMARY KEY  (`id`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 			
 			$q = "DROP TABLE IF EXISTS ".$db_pref."email";
@@ -345,7 +345,7 @@
 			  `id` tinyint(3) unsigned NOT NULL auto_increment,
 			  `template` text NOT NULL,
 			  PRIMARY KEY  (`id`)
-			  ) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			  ) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 			
 			$q = "INSERT INTO ".$db_pref."email values ('1', '{*USERNAME*},\r\n\r\nЭто письмо отправлено с сайта {*URL*}\r\n\r\nВы получили это письмо, так как этот e-mail адрес был использован при регистрации на сайте. Если Вы не регистрировались на этом сайте, просто проигнорируйте это письмо и удалите его. Вы больше не получите такого письма.\r\n\r\n------------------------------------------------\r\nВаш логин и пароль на сайте:\r\n------------------------------------------------\r\n\r\nЛогин: {*USERNAME*}\r\nПароль: {*PASSWORD*}\r\n\r\n------------------------------------------------\r\nИнструкция по активации\r\n------------------------------------------------\r\n\r\nБлагодарим Вас за регистрацию.\r\nМы требуем от Вас подтверждения Вашей регистрации, для проверки того, что введённый Вами e-mail адрес - реальный. Это требуется для защиты от нежелательных злоупотреблений и спама.\r\n\r\nДля активации Вашего аккаунта, зайдите по следующей ссылке:\r\n\r\n{*VALIDATIONLINK*}\r\n\r\nЕсли и при этих действиях ничего не получилось, возможно Ваш аккаунт удалён. В этом случае, обратитесь к Администратору, для разрешения проблемы.\r\n\r\nС уважением,\r\n\r\nАдминистрация {*URL*}')";
@@ -379,7 +379,7 @@
 			  `allow_arhnews` tinyint(1) NOT NULL default '0',
 			  `allow_search` tinyint(1) NOT NULL default '0',
 			  PRIMARY KEY  (`id`)
-			) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 
 			$q = "DROP TABLE IF EXISTS ".$db_pref."blocks";
@@ -396,7 +396,7 @@
 			  `modul` varchar(50) NOT NULL default '',
 			  `text` text NOT NULL,
 			  PRIMARY KEY  (`id`)
-			) TYPE=MyISAM DEFAULT CHARSET=utf8";
+			) engine=myisam DEFAULT CHARSET=utf8";
 			mysql_query($q) or die("Ошибка SQL запроса");
 			
 			$q = "INSERT INTO ".$db_pref."blocks values ('1', 'Поиск', 'Поиск', '1', '1', '1', 'search.tpl', '', '')";
